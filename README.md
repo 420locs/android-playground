@@ -136,16 +136,24 @@ Tạm thời chưa có feature gì nha
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add base code for call api: Retrofit
-- [ ] Add base code for navigation: navigation-compose/compose-destination
+- [ ] Add base code for call api: retrofit
+- [ ] Add base code for navigation: navigation-compose
+- [ ] Implement Dependency Injection: koin
 - [ ] Add base consistent data: 
     - [ ] data-store
     - [ ] room
 - [ ] Implement savable state viewmodel
 - [ ] Modulize by feature: core <- features <- main <- app
+    - [ ] Home
+    - [ ] Add bill
+    - [ ] View bills: total, progressing, done
+    - [ ] View bill details
+    - [ ] Process bill: Calculate bill -> Confirm bill
+    - [ ] Add people
 - [ ] Multi-language Support
     - [ ] Vietnamese
     - [ ] other???
+- [ ] Migrate to KMP(desktop, android)
 
 See the [open issues](https://github.com/420locs/android-playground/issues) for a full list of proposed features (and known issues).
 
