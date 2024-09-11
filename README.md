@@ -35,7 +35,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">App playground để học Android thui</h3>
+<h3 align="center">App playground để học Android thui</h3>
 
   <p align="center">
   App này sẽ phục vụ ae chia bill thế nào cho nhanh gọn đỡ quên. Nma chủ yếu để tui học Android thui.
@@ -73,6 +73,13 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li>
+      <a href="#architecture">Architecture</a>
+      <ul>
+        <li><a href="#overview-project-architecture">Overview Project Architecture</a></li>
+        <li><a href="#feature-architecture">Feature Architecture</a></li>
+      </ul>
+    </li>
     <!-- <li><a href="#contributing">Contributing</a></li> -->
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -83,15 +90,15 @@
 
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
+
 <!-- todo: Chưa có ảnh screenshot luôn vì chưa ra demo mà -->
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Sau này sẽ nói thêm vài thứ về cái này chứ giờ chưa nghĩ ra.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -103,6 +110,7 @@ Sau này sẽ nói thêm vài thứ về cái này chứ giờ chưa nghĩ ra.
 
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -125,7 +133,9 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
+
 <!-- Todo: add feature mới zô đây -->
 Tạm thời chưa có feature gì nha
 
@@ -134,16 +144,17 @@ Tạm thời chưa có feature gì nha
 
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [ ] Add base code for call api: retrofit
 - [ ] Add base code for navigation: navigation-compose
 - [ ] Implement Dependency Injection: koin
-- [ ] Add base consistent data: 
+- [ ] Add base consistent data:
     - [ ] data-store
     - [ ] room
 - [ ] Implement savable state viewmodel
-- [ ] Modulize by feature: core <- features <- main <- app
+- [ ] Modularize by feature:
     - [ ] Home
     - [ ] Add bill
     - [ ] View bills: total, progressing, done
@@ -155,11 +166,20 @@ Tạm thời chưa có feature gì nha
     - [ ] other???
 - [ ] Migrate to KMP(desktop, android)
 
-See the [open issues](https://github.com/420locs/android-playground/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Architecture
 
+### Overview Project Architecture
+
+core <- features <- main <- app
+<!-- todo: should use picture to describe -->
+
+### Feature Architecture
+
+feature -> presentation -> domain <- data
+feature -> brigde ->
 
 <!-- CONTRIBUTING
 ## Contributing
@@ -186,6 +206,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
+
 ## License
 
 Nao nghĩ đến license thì ghi zô đây
@@ -195,6 +216,7 @@ Nao nghĩ đến license thì ghi zô đây
 
 
 <!-- CONTACT -->
+
 ## Contact
 
 Trịnh Bá Minh Ninh - [Facebook](https://fb.com/zekk01) - ninhtbm@gmail.com
@@ -204,9 +226,11 @@ Trịnh Bá Minh Ninh - [Facebook](https://fb.com/zekk01) - ninhtbm@gmail.com
 
 
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Use this space to list resources you find helpful and would like to give credit to. I've included a
+few of my favorites to kick things off!
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
@@ -223,18 +247,33 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/420locs/android-playground.svg?style=for-the-badge
+
 [contributors-url]: https://github.com/420locs/android-playground/graphs/contributors
+
 [forks-shield]: https://img.shields.io/github/forks/420locs/android-playground.svg?style=for-the-badge
+
 [forks-url]: https://github.com/420locs/android-playground/network/members
+
 [stars-shield]: https://img.shields.io/github/stars/420locs/android-playground.svg?style=for-the-badge
+
 [stars-url]: https://github.com/420locs/android-playground/stargazers
+
 [issues-shield]: https://img.shields.io/github/issues/420locs/android-playground.svg?style=for-the-badge
+
 [issues-url]: https://github.com/420locs/android-playground/issues
+
 [license-shield]: https://img.shields.io/github/license/420locs/android-playground.svg?style=for-the-badge
+
 [license-url]: https://github.com/420locs/android-playground/blob/master/LICENSE.txt
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
 [linkedin-url]: https://linkedin.com/in/420locs
+
 [product-screenshot]: images/screenshot.png
+
 [android-badge]: https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white
+
 [android-url]: https://jquery.com 
