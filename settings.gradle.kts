@@ -21,6 +21,9 @@ dependencyResolutionManagement {
         create("thirdPartyLibs") {
             from(files("gradle/thirdPartyLibs.versions.toml"))
         }
+        create("dataSourceLibs") {
+            from(files("gradle/dataSourceLibs.versions.toml"))
+        }
     }
 }
 

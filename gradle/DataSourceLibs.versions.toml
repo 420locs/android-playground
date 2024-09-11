@@ -1,0 +1,7 @@
+[versions]
+
+[libraries]
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version = "4.12.0" }
+retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.9.0"}
+retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version = "1.0.0" }
+[plugins]
