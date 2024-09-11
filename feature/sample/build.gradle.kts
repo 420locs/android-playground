@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm)
+    kotlin("plugin.serialization")
 }
 
 dependencies {
+    implementation(libs.koin.core)
     implementation(libs.kotlinx.serialization.json)
     implementation(dataSourceLibs.retrofit.core)
-    implementation(dataSourceLibs.okhttp.logging)
-    implementation(dataSourceLibs.retrofit.kotlin.serialization)
+    implementation(project(":core:data:network"))
 }
+

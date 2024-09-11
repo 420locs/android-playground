@@ -6,5 +6,5 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.google.devtools.ksp) apply false
     alias(libs.plugins.android.library) apply false
-
+    kotlin("plugin.serialization") version "2.0.20" apply false
 }
