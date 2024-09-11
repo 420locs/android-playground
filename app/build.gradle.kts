@@ -52,7 +52,7 @@ dependencies {
 
     implementation(libs.koin.android)
     implementation(libs.koin.android.compose)
-    implementation(project(":core:bridge"))
+    implementation(project(":bridge"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
