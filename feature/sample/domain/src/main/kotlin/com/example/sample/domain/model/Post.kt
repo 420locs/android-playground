@@ -1,14 +1,6 @@
-package com.example.sample.trash
+package com.example.sample.domain.model
 
 import kotlinx.serialization.Serializable
-import retrofit2.http.GET
-
-interface PlaceHolderService {
-
-    @GET("posts")
-    suspend fun getPosts(): List<Post>
-
-}
 
 @Serializable
 data class Post(
