@@ -1,16 +1,7 @@
 package com.example.bridge
 
-import com.example.sample.MyClass
-import com.example.network.NetworkApi
-import com.example.sample.trash.PlaceHolderApi
+import com.example.bridge.core.coreDataModules
 import org.koin.dsl.module
 
-val dataModule = module {
-    single<NetworkApi> { PlaceHolderApi() }
-}
-
-val sampleModule = module {
-    factory<MyClass> {
-        MyClass(get())
-    }
-}
+val businessModules = coreDataModules +
+        SampleModule.getAllBusinessModules()
