@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 abstract class NetworkApi {
     // Todo: baseUrl should be define on properties file
     abstract val baseUrl: String
-    inline fun <reified T> createService(): T {
+    fun <T> createService(service: Class<T>): T {
         val networkJson = Json {
             ignoreUnknownKeys = true
             coerceInputValues = true
@@ -28,6 +28,6 @@ abstract class NetworkApi {
             )
             .addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
             .build()
-            .create(T::class.java)
+            .create(service)
     }
 }
