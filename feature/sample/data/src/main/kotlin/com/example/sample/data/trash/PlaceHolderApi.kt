@@ -1,4 +1,4 @@
-package com.example.sample.trash
+package com.example.sample.data.trash
 
 import com.example.network.NetworkApi
 

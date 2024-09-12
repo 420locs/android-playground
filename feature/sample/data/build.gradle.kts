@@ -8,5 +8,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(dataSourceLibs.retrofit.core)
     implementation(project(":core:data:network"))
+    implementation(project(":feature:sample:domain"))
 }
 
