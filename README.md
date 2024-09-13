@@ -38,7 +38,7 @@
 <h3 align="center">App playground để học Android thui</h3>
 
   <p align="center">
-  App này sẽ phục vụ ae chia bill thế nào cho nhanh gọn đỡ quên. Nma chủ yếu để tui học Android thui.
+  Project này sẽ là playground để apply các công nghệ mới cho một underbone Android App với mục tiêu hướng đến Kotlin Multiplatform
     <br />
     <a href="https://github.com/420locs/android-playground"><strong>Explore the docs »</strong></a>
     <br />
@@ -147,39 +147,60 @@ Tạm thời chưa có feature gì nha
 
 ## Roadmap
 
-- [ ] Add base code for call api: retrofit
-- [ ] Add base code for navigation: navigation-compose
-- [ ] Implement Dependency Injection: koin
+- [x] Add base code for call api: retrofit
+- [x] Add base code for navigation: navigation-compose
+- [x] Implement Dependency Injection: koin
 - [ ] Add base consistent data:
     - [ ] data-store
     - [ ] room
 - [ ] Implement savable state viewmodel
-- [ ] Modularize by feature:
+- [ ] Develop system-design
+    - [ ] Toolbar
+    - [ ] Button
+    - [ ] Pull to refresh
+    - [ ] InAppMessage
+- [x] Modularize by feature:
     - [ ] Home
-    - [ ] Add bill
-    - [ ] View bills: total, progressing, done
-    - [ ] View bill details
-    - [ ] Process bill: Calculate bill -> Confirm bill
-    - [ ] Add people
+    - [x] Sample
+    - [ ] DataStore Example
+    - [ ] Firebase Example
+    - [ ] InAppMessage Example
+    - [ ] Notification Example
+    - [ ] Pager Example
+    - [ ] InnerScroll Example
 - [ ] Multi-language Support
     - [ ] Vietnamese
     - [ ] other???
 - [ ] Migrate to KMP(desktop, android)
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Architecture
 
+- app
+- bridge
+- core
+    - data
+        - network
+        - data-store (coming soon)
+    - system-design (coming soon)
+- features
+    - data
+    - domain
+    - presentation
+
 ### Overview Project Architecture
 
-core <- features <- main <- app
+core <- features <- app
 <!-- todo: should use picture to describe -->
 
 ### Feature Architecture
 
-feature -> presentation -> domain <- data
-feature -> brigde ->
+feature: presentation -> domain <- data
+
+data -> bridge <- domain
+
+presentation -> app <- bridge
 
 <!-- CONTRIBUTING
 ## Contributing
