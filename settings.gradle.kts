@@ -18,11 +18,14 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        create("thirdPartyLibs") {
-            from(files("gradle/thirdPartyLibs.versions.toml"))
+        create("androidLibs") {
+            from(files("gradle/android-libs.versions.toml"))
         }
-        create("dataSourceLibs") {
-            from(files("gradle/dataSourceLibs.versions.toml"))
+        create("kotlinLibs") {
+            from(files("gradle/kotlin-libs.versions.toml"))
+        }
+        create("thirdPartyLibs") {
+            from(files("gradle/third-party-libs.versions.toml"))
         }
     }
 }

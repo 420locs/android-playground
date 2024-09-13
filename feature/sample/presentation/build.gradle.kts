@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.compose.compiler)
+    alias(androidLibs.plugins.android.library)
+    alias(kotlinLibs.plugins.jetbrains.kotlin.android)
+    alias(kotlinLibs.plugins.jetbrains.compose.compiler)
     kotlin("plugin.serialization")
 }
 
@@ -24,19 +24,19 @@ android {
 dependencies {
     implementation(project(":feature:sample:domain"))
 
-    implementation(libs.koin.android.compose)
+    implementation(thirdPartyLibs.koin.android.compose)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.lifecycle.viewmodel.savable)
+    implementation(androidLibs.androidx.core.ktx)
+    implementation(androidLibs.androidx.lifecycle.runtime.ktx)
+    implementation(androidLibs.androidx.lifecycle.viewmodel)
+    implementation(androidLibs.androidx.lifecycle.viewmodel.savable)
 
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(androidLibs.androidx.activity.compose)
+    implementation(platform(androidLibs.androidx.compose.bom))
+    implementation(androidLibs.androidx.ui)
+    implementation(androidLibs.androidx.ui.graphics)
+    implementation(androidLibs.androidx.ui.tooling.preview)
+    implementation(androidLibs.androidx.material3)
+    debugImplementation(androidLibs.androidx.ui.tooling)
+    debugImplementation(androidLibs.androidx.ui.test.manifest)
 }

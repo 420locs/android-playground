@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(kotlinLibs.plugins.jetbrains.kotlin.jvm)
 }
 
 
 dependencies {
-    implementation(libs.koin.core)
+    implementation(thirdPartyLibs.koin.core)
     implementation(project(":core:data:network"))
     implementation(project(":feature:sample:data"))
     implementation(project(":feature:sample:domain"))

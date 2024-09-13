@@ -1,18 +1,18 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.compose.compiler)
+    alias(androidLibs.plugins.android.application)
+    alias(kotlinLibs.plugins.jetbrains.kotlin.android)
+    alias(kotlinLibs.plugins.jetbrains.compose.compiler)
     kotlin("plugin.serialization")
 }
 
 android {
     namespace = "com.example.trashArchitecture"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.trashArchitecture"
         minSdk = 28
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -50,33 +50,33 @@ android {
 
 dependencies {
 
-    implementation(libs.koin.android.compose)
+    implementation(thirdPartyLibs.koin.android.compose)
     implementation(project(":bridge"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.lifecycle.viewmodel.savable)
+    implementation(androidLibs.androidx.core.ktx)
+    implementation(androidLibs.androidx.lifecycle.runtime.ktx)
+    implementation(androidLibs.androidx.lifecycle.viewmodel)
+    implementation(androidLibs.androidx.lifecycle.viewmodel.savable)
 
     // UI
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(androidLibs.androidx.activity.compose)
+    implementation(platform(androidLibs.androidx.compose.bom))
+    implementation(androidLibs.androidx.ui)
+    implementation(androidLibs.androidx.ui.graphics)
+    implementation(androidLibs.androidx.ui.tooling.preview)
+    implementation(androidLibs.androidx.material3)
+    debugImplementation(androidLibs.androidx.ui.tooling)
+    debugImplementation(androidLibs.androidx.ui.test.manifest)
 
 
-    implementation(libs.kotlinx.serialization.json)
-    implementation(dataSourceLibs.retrofit.core)
+    implementation(kotlinLibs.kotlinx.serialization.json)
+    implementation(thirdPartyLibs.retrofit.core)
     implementation(project(":feature:sample:presentation"))
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+    testImplementation(androidLibs.junit)
+    androidTestImplementation(androidLibs.androidx.junit)
+    androidTestImplementation(androidLibs.androidx.espresso.core)
+    androidTestImplementation(platform(androidLibs.androidx.compose.bom))
+    androidTestImplementation(androidLibs.androidx.ui.test.junit4)
 
 }

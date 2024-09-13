@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(kotlinLibs.plugins.jetbrains.kotlin.jvm)
     kotlin("plugin.serialization")
 }
 
 dependencies {
-    implementation(libs.kotlinx.serialization.json)
+    implementation(kotlinLibs.kotlinx.serialization.json)
 }

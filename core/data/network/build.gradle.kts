@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(kotlinLibs.plugins.jetbrains.kotlin.jvm)
 }
 
 dependencies {
-    implementation(libs.kotlinx.serialization.json)
-    implementation(dataSourceLibs.retrofit.core)
-    implementation(dataSourceLibs.okhttp.logging)
-    implementation(dataSourceLibs.retrofit.kotlin.serialization)
+    implementation(kotlinLibs.kotlinx.serialization.json)
+    implementation(thirdPartyLibs.retrofit.core)
+    implementation(thirdPartyLibs.okhttp.logging)
+    implementation(thirdPartyLibs.retrofit.kotlin.serialization)
 }
