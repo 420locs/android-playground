@@ -29,6 +29,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Trash Architecture"
 include(":app")
-include(":core:data:network")
 include(":bridge")
-include(":feature:sample")
+include(":core:data:network")
+
+include(":feature:sample:data")
+include(":feature:sample:domain")
+include(":feature:sample:presentation")
