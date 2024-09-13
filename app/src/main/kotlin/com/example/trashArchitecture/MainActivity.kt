@@ -4,7 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.sample.presentation.main.SampleScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.example.home.presentation.navigation.HomeNavigation
+import com.example.home.presentation.navigation.home
+import com.example.sample.presentation.navigation.navigateToSample
+import com.example.sample.presentation.navigation.sample
 import com.example.trashArchitecture.ui.theme.TrashArchitectureTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,8 +18,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
             TrashArchitectureTheme {
-                SampleScreen()
+                NavHost(navController = navController, startDestination = HomeNavigation) {
+                    home(
+                        navController = navController,
+                        navigateToSample = navController::navigateToSample
+                    )
+                    sample(navController = navController)
+                }
             }
         }
     }

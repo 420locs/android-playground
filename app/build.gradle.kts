@@ -65,12 +65,14 @@ dependencies {
     implementation(androidLibs.androidx.ui.graphics)
     implementation(androidLibs.androidx.ui.tooling.preview)
     implementation(androidLibs.androidx.material3)
+    implementation(androidLibs.androidx.compose.navigation)
     debugImplementation(androidLibs.androidx.ui.tooling)
     debugImplementation(androidLibs.androidx.ui.test.manifest)
 
 
     implementation(kotlinLibs.kotlinx.serialization.json)
     implementation(thirdPartyLibs.retrofit.core)
+    implementation(project(":feature:home:presentation"))
     implementation(project(":feature:sample:presentation"))
 
     testImplementation(androidLibs.junit)
