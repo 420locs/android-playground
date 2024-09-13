@@ -2,6 +2,7 @@ package com.example.sample.presentation.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.navigation.NavController
 import com.example.sample.presentation.main.section.SampleScreenSection
 import com.example.sample.presentation.main.section.rememberSampleScreenInitialSectionState
 import com.example.sample.presentation.main.section.rememberSampleScreenLoadingSectionState
@@ -12,7 +13,10 @@ internal data class SampleScreenState(
 )
 
 @Composable
-internal fun rememberSampleScreenState(viewModel: SampleViewModel): SampleScreenState {
+internal fun rememberSampleScreenState(
+    viewModel: SampleViewModel,
+    navController: NavController,
+): SampleScreenState {
     val isFirstLoadLoading = viewModel.isFirstLoadLoading
     val listPost = viewModel.listData
 

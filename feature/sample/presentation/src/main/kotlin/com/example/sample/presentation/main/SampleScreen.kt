@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.sample.domain.model.Post
 import com.example.sample.presentation.main.section.SampleScreenInitialSection
 import com.example.sample.presentation.main.section.SampleScreenInitialSectionState
@@ -25,13 +26,14 @@ import com.example.sample.presentation.main.section.SampleScreenLoadedSectionSta
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SampleScreen(
+internal fun SampleScreen(
+    navController: NavController,
     viewModel: SampleViewModel = koinViewModel()
 ) {
     LaunchedEffect(key1 = viewModel) {
         viewModel.initLoadData()
     }
-    val state = rememberSampleScreenState(viewModel)
+    val state = rememberSampleScreenState(viewModel, navController)
     SampleScreenContent(state)
 }
 

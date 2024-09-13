@@ -26,6 +26,8 @@ dependencies {
 
     implementation(thirdPartyLibs.koin.android.compose)
 
+    implementation(kotlinLibs.kotlinx.serialization.json)
+
     implementation(androidLibs.androidx.core.ktx)
     implementation(androidLibs.androidx.lifecycle.runtime.ktx)
     implementation(androidLibs.androidx.lifecycle.viewmodel)
@@ -37,6 +39,7 @@ dependencies {
     implementation(androidLibs.androidx.ui.graphics)
     implementation(androidLibs.androidx.ui.tooling.preview)
     implementation(androidLibs.androidx.material3)
+    implementation(androidLibs.androidx.compose.navigation)
     debugImplementation(androidLibs.androidx.ui.tooling)
     debugImplementation(androidLibs.androidx.ui.test.manifest)
 }
