@@ -9,9 +9,6 @@ android {
     namespace = "com.example.trashArchitecture.sample"
     compileSdk = 34
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
