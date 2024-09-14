@@ -1,6 +1,5 @@
-package com.example.trashArchitecture.ui.theme
+package com.example.designSystem.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

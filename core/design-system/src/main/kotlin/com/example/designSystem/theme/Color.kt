@@ -1,4 +1,4 @@
-package com.example.trashArchitecture.ui.theme
+package com.example.designSystem.theme
 
 import androidx.compose.ui.graphics.Color
 
