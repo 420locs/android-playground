@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.designSystem.design.MainToolbar
 import com.example.sample.domain.model.Post
 import com.example.sample.presentation.main.section.SampleScreenInitialSection
 import com.example.sample.presentation.main.section.SampleScreenInitialSectionState
@@ -42,17 +43,12 @@ private fun SampleScreenContent(state: SampleScreenState, modifier: Modifier = M
     Scaffold(
         modifier = modifier.systemBarsPadding(),
         topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "🗣️ Sample Screen 🗿",
-                    fontSize = 24.sp
-                )
-            }
+            MainToolbar(
+                title = "🗣️ Sample Screen 🗿",
+                notification = true,
+                navigateToNotification = {},
+                newNotificationsCount = 1
+            )
         }
     ) { padding ->
         when (val sectionState = state.section) {

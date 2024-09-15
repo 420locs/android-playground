@@ -23,6 +23,7 @@ android {
 
 dependencies {
     implementation(project(":feature:sample:domain"))
+    implementation(project(":core:design-system"))
 
     implementation(thirdPartyLibs.koin.android.compose)
 
