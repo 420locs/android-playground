@@ -155,19 +155,19 @@ Tạm thời chưa có feature gì nha
     - [ ] room
 - [ ] Implement savable state viewmodel
 - [ ] Develop system-design
-    - [ ] Toolbar
+    - [x] Toolbar
     - [ ] Button
     - [ ] Pull to refresh
     - [ ] InAppMessage
 - [x] Modularize by feature:
     - [ ] Home
     - [x] Sample
-    - [ ] DataStore Example
-    - [ ] Firebase Example
-    - [ ] InAppMessage Example
-    - [ ] Notification Example
-    - [ ] Pager Example
-    - [ ] InnerScroll Example
+        - [ ] DataStore Example
+        - [ ] Firebase Example
+        - [ ] InAppMessage Example
+        - [ ] Notification Example
+        - [ ] Pager Example
+        - [ ] InnerScroll Example
 - [ ] Multi-language Support
     - [ ] Vietnamese
     - [ ] other???
