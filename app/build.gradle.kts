@@ -68,6 +68,7 @@ dependencies {
     implementation(androidLibs.androidx.compose.navigation)
     debugImplementation(androidLibs.androidx.ui.tooling)
     debugImplementation(androidLibs.androidx.ui.test.manifest)
+    implementation(project(":core:design-system"))
 
 
     implementation(kotlinLibs.kotlinx.serialization.json)

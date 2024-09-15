@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.trashArchitecture.sample"
+    namespace = "com.example.trashArchitecture.designSystem"
     compileSdk = 34
 
     compileOptions {
@@ -22,18 +22,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:sample:domain"))
-    implementation(project(":core:design-system"))
-
-    implementation(thirdPartyLibs.koin.android.compose)
-
-    implementation(kotlinLibs.kotlinx.serialization.json)
-
-    implementation(androidLibs.androidx.core.ktx)
-    implementation(androidLibs.androidx.lifecycle.runtime.ktx)
-    implementation(androidLibs.androidx.lifecycle.viewmodel)
-    implementation(androidLibs.androidx.lifecycle.viewmodel.savable)
-
     implementation(androidLibs.androidx.activity.compose)
     implementation(platform(androidLibs.androidx.compose.bom))
     implementation(androidLibs.androidx.ui)

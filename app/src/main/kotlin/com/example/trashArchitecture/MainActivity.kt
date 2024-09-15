@@ -10,7 +10,7 @@ import com.example.home.presentation.navigation.HomeNavigation
 import com.example.home.presentation.navigation.home
 import com.example.sample.presentation.navigation.navigateToSample
 import com.example.sample.presentation.navigation.sample
-import com.example.trashArchitecture.ui.theme.TrashArchitectureTheme
+import com.example.designSystem.theme.TrashArchitectureTheme
 
 class MainActivity : ComponentActivity() {
 
