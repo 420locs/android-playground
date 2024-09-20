@@ -24,6 +24,7 @@ android {
 dependencies {
     implementation(project(":feature:sample:domain"))
     implementation(project(":core:design-system"))
+    implementation(project(":core:push-notification"))
 
     implementation(thirdPartyLibs.koin.android.compose)
 

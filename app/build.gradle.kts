@@ -49,6 +49,7 @@ android {
 }
 
 dependencies {
+    implementation(androidLibs.accompanist.permissions)
 
     implementation(thirdPartyLibs.koin.android.compose)
     implementation(project(":bridge"))
