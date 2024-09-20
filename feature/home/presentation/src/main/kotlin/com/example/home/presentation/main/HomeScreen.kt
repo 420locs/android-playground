@@ -11,21 +11,36 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.home.presentation.main.section.HomeScreenInitialSection
+import com.example.home.presentation.main.section.HomeScreenInitialSectionState
+import com.example.home.presentation.main.section.HomeScreenLoadedSection
+import com.example.home.presentation.main.section.HomeScreenLoadedSectionState
+import com.example.home.presentation.main.section.HomeScreenLoadingSection
+import com.example.home.presentation.main.section.HomeScreenLoadingSectionState
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun HomeScreen(
-    navigateToSample: () -> Unit,
+    viewModel: HomeViewModel = koinViewModel(),
+    navigateToHome: () -> Unit,
+    navController: NavController,
 ) {
-    HomeScreenContent(navigateToSample)
+    LaunchedEffect(key1 = viewModel) {
+        viewModel.initLoadData()
+    }
+    val state = rememberHomeScreenState(viewModel = viewModel, navigateToSample = navigateToHome, navController = navController)
+    HomeScreenContent(state)
 }
 
 @Composable
-private fun HomeScreenContent(navigateToSample: () -> Unit, modifier: Modifier = Modifier) {
+private fun HomeScreenContent(state: HomeScreenState, modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier.systemBarsPadding(),
         topBar = {
@@ -42,15 +57,21 @@ private fun HomeScreenContent(navigateToSample: () -> Unit, modifier: Modifier =
             }
         }
     ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding),
-            contentAlignment = Alignment.Center
-        ) {
-            Button(onClick = navigateToSample) {
-                Text(text = "Navigate to Sample")
-            }
+        when (val section = state.section) {
+            is HomeScreenInitialSectionState -> HomeScreenInitialSection(
+                state = section,
+                outerPadding = padding
+            )
+
+            is HomeScreenLoadedSectionState -> HomeScreenLoadedSection(
+                state = section,
+                outerPadding = padding
+            )
+
+            is HomeScreenLoadingSectionState -> HomeScreenLoadingSection(
+                state = section,
+                outerPadding = padding
+            )
         }
     }
 }
@@ -58,5 +79,12 @@ private fun HomeScreenContent(navigateToSample: () -> Unit, modifier: Modifier =
 @Preview
 @Composable
 internal fun HomeScreenContentPreview() {
-    HomeScreenContent(navigateToSample = {})
+    val state = HomeScreenState(
+        section = HomeScreenLoadedSectionState(
+            listPost = listOf()
+        ),
+        navigateToSample = {}
+    )
+    HomeScreenContent(state)
+
 }
