@@ -1,9 +1,15 @@
 package com.example.trashArchitecture
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.home.presentation.navigation.HomeNavigation
@@ -11,6 +17,10 @@ import com.example.home.presentation.navigation.home
 import com.example.sample.presentation.navigation.navigateToSample
 import com.example.sample.presentation.navigation.sample
 import com.example.designSystem.theme.TrashArchitectureTheme
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.shouldShowRationale
 
 class MainActivity : ComponentActivity() {
 
@@ -20,6 +30,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             TrashArchitectureTheme {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                    RequestNotificationPermissions(
+                        doOnPermissionGranted = { },
+                        doOnPermissionDenied = { },
+//                    showRationale = { }, // todo: design rationale dialog later
+                    )
+                }
                 NavHost(navController = navController, startDestination = HomeNavigation) {
                     home(
                         navController = navController,
@@ -27,6 +44,35 @@ class MainActivity : ComponentActivity() {
                     )
                     sample(navController = navController)
                 }
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    @OptIn(ExperimentalPermissionsApi::class)
+    @Composable
+    private fun RequestNotificationPermissions(
+        doOnPermissionGranted: () -> Unit,
+        doOnPermissionDenied: () -> Unit,
+        showRationale: (() -> Unit)? = null,
+    ) {
+        val cameraPermissionState =
+            rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
+        val requestPermissionLauncher = rememberLauncherForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                doOnPermissionGranted()
+            } else {
+                doOnPermissionDenied()
+            }
+        }
+
+        LaunchedEffect(cameraPermissionState) {
+            if (!cameraPermissionState.status.isGranted && cameraPermissionState.status.shouldShowRationale) {
+                showRationale?.invoke()
+            } else {
+                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
             }
         }
     }
