@@ -1,11 +1,13 @@
 package com.example.trashArchitecture
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
@@ -28,11 +30,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             TrashArchitectureTheme {
-                RequestNotificationPermissions(
-                    doOnPermissionGranted = { },
-                    doOnPermissionDenied = { },
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                    RequestNotificationPermissions(
+                        doOnPermissionGranted = { },
+                        doOnPermissionDenied = { },
 //                    showRationale = { }, // todo: design rationale dialog later
-                )
+                    )
+                }
                 NavHost(navController = navController, startDestination = HomeNavigation) {
                     home(
                         navController = navController,
@@ -44,6 +48,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OptIn(ExperimentalPermissionsApi::class)
     @Composable
     private fun RequestNotificationPermissions(
