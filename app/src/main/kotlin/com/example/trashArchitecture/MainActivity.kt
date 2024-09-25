@@ -30,12 +30,31 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             TrashArchitectureTheme {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                    RequestNotificationPermissions(
-                        doOnPermissionGranted = { },
-                        doOnPermissionDenied = { },
-//                    showRationale = { }, // todo: design rationale dialog later
-                    )
+                when {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
+                        RequestPermissions(
+                            permission = android.Manifest.permission.POST_NOTIFICATIONS,
+                            doOnPermissionGranted = { },
+                            doOnPermissionDenied = { },
+                            //                    showRationale = { }, // todo: design rationale dialog later
+                        )
+
+                        RequestPermissions(
+                            permission = android.Manifest.permission.READ_MEDIA_AUDIO,
+                            doOnPermissionGranted = { },
+                            doOnPermissionDenied = { },
+                            //                    showRationale = { }, // todo: design rationale dialog later
+                        )
+                    }
+
+                    else -> {
+                        RequestPermissions(
+                            permission = android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                            doOnPermissionGranted = { },
+                            doOnPermissionDenied = { },
+                            //                    showRationale = { }, // todo: design rationale dialog later
+                        )
+                    }
                 }
                 NavHost(navController = navController, startDestination = HomeNavigation) {
                     home(
@@ -48,16 +67,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OptIn(ExperimentalPermissionsApi::class)
     @Composable
-    private fun RequestNotificationPermissions(
+    private fun RequestPermissions(
+        permission: String,
         doOnPermissionGranted: () -> Unit,
         doOnPermissionDenied: () -> Unit,
         showRationale: (() -> Unit)? = null,
     ) {
         val cameraPermissionState =
-            rememberPermissionState(android.Manifest.permission.POST_NOTIFICATIONS)
+            rememberPermissionState(permission)
         val requestPermissionLauncher = rememberLauncherForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted ->
@@ -72,7 +91,7 @@ class MainActivity : ComponentActivity() {
             if (!cameraPermissionState.status.isGranted && cameraPermissionState.status.shouldShowRationale) {
                 showRationale?.invoke()
             } else {
-                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                requestPermissionLauncher.launch(permission)
             }
         }
     }

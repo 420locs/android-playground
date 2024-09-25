@@ -2,8 +2,6 @@ package com.example.home.presentation.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
-import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.NavController
 import com.example.home.presentation.main.section.HomeScreenSection
 import com.example.home.presentation.main.section.rememberHomeScreenInitialSectionState
@@ -24,11 +22,14 @@ internal fun rememberHomeScreenState(
     val isInitiateLoading = viewModel.isFirstLoadLoading
     val isRefreshLoading = viewModel.isRefreshLoading
     val todayMusics = viewModel.todayMusics
+
+
     val section = when {
         isInitiateLoading -> rememberHomeScreenLoadingSectionState()
         todayMusics != null && todayMusics.isSuccess -> rememberHomeScreenLoadedSectionState(
-            listPost = todayMusics.getOrDefault(emptyList())
+            listMusic = todayMusics.getOrDefault(emptyList())
         )
+
         else -> rememberHomeScreenInitialSectionState(
             isFailed = true,
             errorMessage = "Call api chết mẹ r check lại đi",
