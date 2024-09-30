@@ -29,10 +29,8 @@ internal fun HomeScreen(
     navigateToHome: () -> Unit,
     navController: NavController,
 ) {
-val context = LocalContext.current
-
     LaunchedEffect(key1 = viewModel) {
-        viewModel.initLoadData(context)
+        viewModel.initLoadData()
     }
 
     val state = rememberHomeScreenState(

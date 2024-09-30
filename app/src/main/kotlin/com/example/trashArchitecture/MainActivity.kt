@@ -32,12 +32,12 @@ class MainActivity : ComponentActivity() {
             TrashArchitectureTheme {
                 when {
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
-                        RequestPermissions(
-                            permission = android.Manifest.permission.POST_NOTIFICATIONS,
-                            doOnPermissionGranted = { },
-                            doOnPermissionDenied = { },
-                            //                    showRationale = { }, // todo: design rationale dialog later
-                        )
+//                        RequestPermissions(
+//                            permission = android.Manifest.permission.POST_NOTIFICATIONS,
+//                            doOnPermissionGranted = { },
+//                            doOnPermissionDenied = { },
+//                            //                    showRationale = { }, // todo: design rationale dialog later
+//                        )
 
                         RequestPermissions(
                             permission = android.Manifest.permission.READ_MEDIA_AUDIO,

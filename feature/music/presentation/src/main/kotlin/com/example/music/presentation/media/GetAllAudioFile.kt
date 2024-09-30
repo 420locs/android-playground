@@ -1,14 +1,17 @@
 package com.example.music.presentation.media
 
+import android.Manifest
 import android.content.ContentUris
 import android.content.Context
-import android.net.Uri
+import android.content.pm.PackageManager
+import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
 
-class MusicResource {
+class GetAllAudioFile(private val context: Context) {
     // Query the MediaStore for audio files
-    operator fun invoke(context: Context): List<Song> {
+    operator fun invoke(): List<Song> {
+        if (!context.isPermissionGranted()) return emptyList()
         val projection = arrayOf(
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.DISPLAY_NAME,
@@ -18,7 +21,11 @@ class MusicResource {
             MediaStore.Audio.Media.ALBUM_ID,
         )
 
-        val selection = "${MediaStore.Audio.Media.IS_MUSIC} != 0"
+        val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            "${MediaStore.Audio.Media.IS_MUSIC} != 0 AND ${MediaStore.Audio.Media.IS_RECORDING} == 0"
+        } else {
+            "${MediaStore.Audio.Media.IS_MUSIC} != 0"
+        }
         val sortOrder = "${MediaStore.Audio.Media.DISPLAY_NAME} ASC"
 
         // Query the MediaStore
@@ -66,5 +73,13 @@ class MusicResource {
             }
         }
         return listMusic
+    }
+
+    private fun Context.isPermissionGranted(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            checkSelfPermission(Manifest.permission.READ_MEDIA_AUDIO) == PackageManager.PERMISSION_GRANTED
+        } else {
+            checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        }
     }
 }
