@@ -1,10 +1,8 @@
 package com.example.music.presentation.main
 
-import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.media3.session.MediaController
 import com.example.music.presentation.main.section.MusicPlayerSectionState
 import com.example.music.presentation.main.section.rememberMusicPlayerInitialSectionState
 import com.example.music.presentation.main.section.rememberMusicPlayerLoadedSectionState
@@ -17,7 +15,6 @@ internal data class MusicPlayerState(
 internal fun rememberMusicPlayerState(
     viewModel: MusicPlayerViewModel,
 ): MusicPlayerState {
-    val duration = viewModel.duration
     val durationString = viewModel.durationString
     val progress = viewModel.progress
     val progressString = viewModel.progressString
@@ -30,14 +27,21 @@ internal fun rememberMusicPlayerState(
         }
     }
 
+    val onPlay = remember(viewModel.mediaPlayer) {
+        {
+            viewModel.mediaPlayer.prepare()
+            viewModel.mediaPlayer.play()
+        }
+    }
 
     val section = if (isReady) {
         rememberMusicPlayerLoadedSectionState(
             isPlaying = isPlaying,
-            onPlay = {
-                viewModel.mediaPlayer.prepare()
-                viewModel.mediaPlayer.play()
-            },
+            durationString = durationString,
+            progress = progress,
+            progressString = progressString,
+            onMediaEvent = viewModel::onMediaEvent,
+            onPlay = onPlay,
             onPause = viewModel.mediaPlayer::pause,
             onPrevious = viewModel.mediaPlayer::seekToPreviousMediaItem,
             onNext = viewModel.mediaPlayer::seekToNextMediaItem,

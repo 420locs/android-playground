@@ -18,6 +18,7 @@ import com.example.media.MediaServiceConnection
 import com.example.media.state.MediaEvent
 import com.example.media.state.MediaState
 import kotlinx.coroutines.launch
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 @OptIn(SavedStateHandleSaveableApi::class)
@@ -28,8 +29,7 @@ class MusicPlayerViewModel(
     private val musicPlayerHandler: MediaPlayerHandler
 ) : ViewModel() {
 
-    var duration by savedStateHandle.saveable { mutableLongStateOf(0L) }
-        private set
+    private var duration by savedStateHandle.saveable { mutableLongStateOf(0L) }
     var durationString by savedStateHandle.saveable { mutableStateOf("00:00") }
         private set
     var progress by savedStateHandle.saveable { mutableFloatStateOf(0f) }
@@ -85,7 +85,7 @@ class MusicPlayerViewModel(
         }
     }
 
-    fun onUIEvent(uiEvent: MediaEvent) = viewModelScope.launch {
+    fun onMediaEvent(uiEvent: MediaEvent) = viewModelScope.launch {
         when (uiEvent) {
             MediaEvent.Backward -> musicPlayerHandler.onMediaEvent(MediaEvent.Backward)
             MediaEvent.Forward -> musicPlayerHandler.onMediaEvent(MediaEvent.Forward)
@@ -107,7 +107,7 @@ class MusicPlayerViewModel(
         val minutes: Long = TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS)
         val seconds: Long = (TimeUnit.SECONDS.convert(duration, TimeUnit.MILLISECONDS)
                 - minutes * TimeUnit.SECONDS.convert(1, TimeUnit.MINUTES))
-        return String.format("%02d:%02d", minutes, seconds)
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
     }
 
     private fun calculateProgressValues(currentProgress: Long) {
