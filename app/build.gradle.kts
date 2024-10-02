@@ -49,6 +49,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:media"))
+
     implementation(androidLibs.accompanist.permissions)
 
     implementation(thirdPartyLibs.koin.android.compose)
