@@ -1,37 +1,21 @@
 package com.example.home.presentation.main.section
 
-import android.net.Uri
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player.Listener
-import androidx.media3.session.MediaController
-import com.example.music.presentation.media.Song
-import com.example.music.presentation.media.updatePlaylist
-import com.example.music.presentation.music.rememberManagedMediaController
+import com.example.home.domain.model.Song
 
 internal data class HomeScreenLoadedSectionState(
     val listMusic: List<Song>,
-    val mediaController: MediaController?,
+    val onPlayAt: (Int) -> Unit,
 ) : HomeScreenSection
 
 @Composable
 internal fun rememberHomeScreenLoadedSectionState(
-    listMusic: List<Song>
+    listMusic: List<Song>,
+    onPlayAt: (Int) -> Unit,
 ): HomeScreenLoadedSectionState {
 
-    val mediaController by rememberManagedMediaController()
-
-    LaunchedEffect(mediaController) {
-        mediaController?.updatePlaylist(
-            listMusic.map {
-                MediaItem.fromUri(it.uri)
-            }
-        )
-    }
-    return remember(listMusic, mediaController) {
-        HomeScreenLoadedSectionState(listMusic = listMusic, mediaController = mediaController)
+    return remember(listMusic) {
+        HomeScreenLoadedSectionState(listMusic = listMusic, onPlayAt = onPlayAt)
     }
 }

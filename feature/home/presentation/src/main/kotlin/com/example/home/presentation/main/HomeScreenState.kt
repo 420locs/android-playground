@@ -7,6 +7,7 @@ import com.example.home.presentation.main.section.HomeScreenSection
 import com.example.home.presentation.main.section.rememberHomeScreenInitialSectionState
 import com.example.home.presentation.main.section.rememberHomeScreenLoadedSectionState
 import com.example.home.presentation.main.section.rememberHomeScreenLoadingSectionState
+import com.example.media.playMediaAt
 
 internal data class HomeScreenState(
     val section: HomeScreenSection,
@@ -23,16 +24,16 @@ internal fun rememberHomeScreenState(
     val isRefreshLoading = viewModel.isRefreshLoading
     val todayMusics = viewModel.todayMusics
 
-
     val section = when {
         isInitiateLoading -> rememberHomeScreenLoadingSectionState()
         todayMusics != null && todayMusics.isSuccess -> rememberHomeScreenLoadedSectionState(
-            listMusic = todayMusics.getOrDefault(emptyList())
+            listMusic = todayMusics.getOrDefault(emptyList()),
+            onPlayAt = viewModel.mediaPlayer::playMediaAt
         )
 
         else -> rememberHomeScreenInitialSectionState(
             isFailed = true,
-            errorMessage = "Call api chết mẹ r check lại đi",
+            errorMessage = "Something went wrong!",
             actionReload = viewModel::refreshData
 
         )

@@ -27,7 +27,7 @@ internal fun HomeScreenInitialSection(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if(state.isFailed) {
+        if (state.isFailed) {
             Text(text = state.errorMessage)
             Button(onClick = state.actionReload) {
                 Text(text = "Reload")

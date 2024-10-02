@@ -29,7 +29,8 @@ dependencies {
     implementation(androidLibs.androidx.media3.common)
 
     implementation(project(":feature:music:presentation"))
-//    implementation(project(":feature:home:domain"))
+    implementation(project(":feature:home:domain"))
+    implementation(project(":core:media"))
 
     implementation(thirdPartyLibs.koin.android.compose)
 

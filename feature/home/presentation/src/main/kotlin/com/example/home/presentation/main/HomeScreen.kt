@@ -84,7 +84,7 @@ internal fun HomeScreenContentPreview() {
     val state = HomeScreenState(
         section = HomeScreenLoadedSectionState(
             listMusic = emptyList(),
-            mediaController = null,
+            onPlayAt = {},
         ),
         navigateToSample = {}
     )
