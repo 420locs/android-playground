@@ -12,6 +12,7 @@ import com.example.home.domain.useCase.GetAllRemoteSongs
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeViewModel(
     val mediaPlayer: Player,
@@ -35,8 +36,10 @@ class HomeViewModel(
         if (isFirstLoadLoading || isRefreshLoading) return
 
         isFirstLoadLoading = true
-        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            val allSongs = getAllRemoteSongsUseCase()
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val allSongs = withContext(Dispatchers.IO) {
+                getAllRemoteSongsUseCase()
+            }
             todayMusics = Result.success(allSongs)
             isFirstLoadLoading = false
         }
@@ -52,8 +55,10 @@ class HomeViewModel(
         if (isFirstLoadLoading || isRefreshLoading) return
 
         isRefreshLoading = true
-        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            val allSongs = getAllRemoteSongsUseCase()
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val allSongs = withContext(Dispatchers.IO) {
+                getAllRemoteSongsUseCase()
+            }
             todayMusics = Result.success(allSongs)
             isRefreshLoading = false
         }
