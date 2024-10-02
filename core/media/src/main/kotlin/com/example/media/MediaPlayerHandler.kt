@@ -1,11 +1,10 @@
-package com.example.music.presentation.media
+package com.example.media
 
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import com.example.music.presentation.media.state.MediaEvent
-import com.example.music.presentation.media.state.MediaState
-import kotlinx.coroutines.CoroutineScope
+import com.example.media.state.MediaEvent
+import com.example.media.state.MediaState
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

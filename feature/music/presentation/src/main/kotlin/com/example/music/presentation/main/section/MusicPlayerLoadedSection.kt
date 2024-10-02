@@ -30,15 +30,13 @@ internal fun MusicPlayerLoadedSection(
                 .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Button(onClick = state.onPrevious,
-                enabled = state.hasPrevious) {
+            Button(onClick = state.onPrevious) {
                 Text(text = "Previous")
             }
             Button(onClick = if (state.isPlaying) state.onPause else state.onPlay) {
                 Text(text = if (state.isPlaying) "Pause" else "Play")
             }
-            Button(onClick = state.onNext,
-                enabled = state.hasNext) {
+            Button(onClick = state.onNext) {
                 Text(text = "Next")
             }
         }

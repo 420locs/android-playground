@@ -1,4 +1,4 @@
-package com.example.music.presentation.media
+package com.example.media
 
 import android.util.Log
 import androidx.media3.common.MediaItem

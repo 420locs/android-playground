@@ -8,7 +8,7 @@
 
     <application>
         <service
-            android:name="com.example.music.presentation.media.MediaService"
+            android:name="com.example.media.MediaService"
             android:foregroundServiceType="mediaPlayback"
             android:exported="true"
             android:permission="android.permission.FOREGROUND_SERVICE">

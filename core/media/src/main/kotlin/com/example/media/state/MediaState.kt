@@ -1,4 +1,4 @@
-package com.example.music.presentation.media.state
+package com.example.media.state
 
 sealed interface MediaState {
     data object Initial : MediaState

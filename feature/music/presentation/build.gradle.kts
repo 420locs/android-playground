@@ -32,7 +32,9 @@ dependencies {
 
 //    implementation(project(":feature:sample:domain"))
     implementation(project(":core:design-system"))
+    implementation(project(":core:media"))
     implementation(project(":core:push-notification"))
+    implementation(project(":feature:home:domain"))
 
     implementation(thirdPartyLibs.koin.android.compose)
 
