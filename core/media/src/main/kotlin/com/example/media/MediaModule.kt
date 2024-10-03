@@ -24,6 +24,5 @@ object MediaModule {
         }
         singleOf(::MediaNotifier)
         singleOf(::MediaPlayerHandler)
-        singleOf(::MusicPool)
     }
 }

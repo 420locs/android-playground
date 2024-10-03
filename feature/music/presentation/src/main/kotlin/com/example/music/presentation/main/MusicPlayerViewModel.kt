@@ -1,6 +1,5 @@
 package com.example.music.presentation.main
 
-import android.net.Uri
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -9,10 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
 import androidx.lifecycle.viewmodel.compose.saveable
-import androidx.media3.common.MediaItem
-import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
-import com.example.home.domain.model.Song
 import com.example.media.MediaPlayerHandler
 import com.example.media.MediaServiceConnection
 import com.example.media.state.MediaEvent
@@ -43,7 +39,6 @@ class MusicPlayerViewModel(
 
     init {
         viewModelScope.launch {
-
             musicPlayerHandler.mediaState.collect { mediaState ->
                 when (mediaState) {
                     is MediaState.Buffering -> calculateProgressValues(mediaState.progress)
@@ -60,23 +55,6 @@ class MusicPlayerViewModel(
                 }
             }
         }
-    }
-
-    fun loadData(listSong: List<Song>) {
-        val mediaItems = listSong.map { song ->
-            MediaItem.Builder()
-                .setUri(song.source)
-                .setMediaMetadata(
-                    MediaMetadata.Builder()
-                        .setIsBrowsable(false)
-                        .setMediaType(MediaMetadata.MEDIA_TYPE_MUSIC)
-                        .setArtworkUri(Uri.parse(song.image))
-                        .setAlbumTitle(song.album)
-                        .setDisplayTitle(song.title)
-                        .build()
-                ).build()
-        }
-        musicPlayerHandler.addMediaItemList(mediaItems)
     }
 
     override fun onCleared() {

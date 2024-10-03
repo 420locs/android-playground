@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.music.presentation.mediaProgressBar.MediaProgressBar
 
@@ -33,7 +34,7 @@ internal fun MusicPlayerLoadedSection(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Button(onClick = state.onPrevious) {
@@ -47,4 +48,23 @@ internal fun MusicPlayerLoadedSection(
             }
         }
     }
+}
+
+@Preview
+@Composable
+internal fun MusicPlayerPreview() {
+    val state = MusicPlayerLoadedSectionState(
+        isPlaying = true,
+        durationString = "02:20",
+        progress = 0.5f,
+        progressString = "01:10",
+        onMediaEvent = {},
+        onPlay = {},
+        onPause = {},
+        onPrevious = {},
+        onNext = {},
+    )
+    MusicPlayerLoadedSection(
+        state = state
+    )
 }

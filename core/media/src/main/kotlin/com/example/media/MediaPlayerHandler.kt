@@ -1,6 +1,5 @@
 package com.example.media
 
-import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.example.media.state.MediaEvent
@@ -20,19 +19,8 @@ class MediaPlayerHandler (
     private val _mediaState = MutableStateFlow<MediaState>(MediaState.Initial)
     val mediaState = _mediaState.asStateFlow()
 
-
     init {
         player.addListener(this)
-    }
-
-    fun addMediaItem(mediaItem: MediaItem) {
-        player.setMediaItem(mediaItem)
-        player.prepare()
-    }
-
-    fun addMediaItemList(mediaItemList: List<MediaItem>) {
-        player.setMediaItems(mediaItemList)
-        player.prepare()
     }
 
     suspend fun onMediaEvent(mediaEvent: MediaEvent) {

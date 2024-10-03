@@ -26,11 +26,24 @@ fun Player.updatePlaylist(incoming: List<MediaItem>) {
 // Otherwise, it seeks to the default position of the media item at the provided index,
 // sets the player to play when ready, and prepares the player to recover from any errors
 // that may have happened at previous media positions.
-fun Player.playMediaAt(index: Int) {
-    if (currentMediaItemIndex == index)
+fun Player.playMediaAt(index: Int, isTheSamePlaylist: Boolean = false) {
+    if (currentMediaItemIndex == index && isTheSamePlaylist)
         return
     seekToDefaultPosition(index)
     playWhenReady = true
     // Recover from any errors that may have happened at previous media positions
     prepare()
+}
+
+fun Player.playMediaAtPlaylist(index: Int, newList: List<MediaItem>) {
+    val isPlaylistSameSize = currentMediaItems.size == newList.size
+    val isTheSamePlaylist = isPlaylistSameSize && !currentMediaItems.any {
+        it.mediaId != newList[index].mediaId
+    }
+    if (!isTheSamePlaylist) {
+        clearMediaItems()
+        addMediaItems(newList)
+    }
+    prepare()
+    playMediaAt(index, isTheSamePlaylist)
 }
