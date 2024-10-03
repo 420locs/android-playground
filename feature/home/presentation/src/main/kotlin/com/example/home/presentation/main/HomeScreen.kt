@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,19 +44,6 @@ internal fun HomeScreen(
 private fun HomeScreenContent(state: HomeScreenState, modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier.systemBarsPadding(),
-        topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "👉 Home Screen 👈",
-                    fontSize = 24.sp
-                )
-            }
-        }
     ) { padding ->
         when (val section = state.section) {
             is HomeScreenInitialSectionState -> HomeScreenInitialSection(
@@ -83,8 +69,11 @@ private fun HomeScreenContent(state: HomeScreenState, modifier: Modifier = Modif
 internal fun HomeScreenContentPreview() {
     val state = HomeScreenState(
         section = HomeScreenLoadedSectionState(
-            listMusic = emptyList(),
-            onPlayAt = {},
+            recentlyPlayed = emptyList(),
+            todayHits = emptyList(),
+            weeklyDiscovery = emptyList(),
+            onPlayMediaAtNewList = { _, _ -> },
+            isMediaPlayerReady = false,
         ),
         navigateToSample = {}
     )
