@@ -6,6 +6,7 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.example.media.notification.MediaNotifier
 import org.koin.android.ext.android.inject
 
 class MediaService : MediaSessionService() {
