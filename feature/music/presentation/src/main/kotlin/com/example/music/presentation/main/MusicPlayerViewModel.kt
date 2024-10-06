@@ -1,14 +1,16 @@
 package com.example.music.presentation.main
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
 import androidx.lifecycle.viewmodel.compose.saveable
-import androidx.media3.common.Player
+import androidx.media3.common.MediaItem
 import com.example.media.MediaPlayerHandler
 import com.example.media.MediaServiceConnection
 import com.example.media.state.MediaEvent
@@ -20,7 +22,6 @@ import java.util.concurrent.TimeUnit
 @OptIn(SavedStateHandleSaveableApi::class)
 class MusicPlayerViewModel(
     savedStateHandle: SavedStateHandle,
-    val mediaPlayer: Player,
     val musicServiceConnection: MediaServiceConnection,
     private val musicPlayerHandler: MediaPlayerHandler
 ) : ViewModel() {
@@ -36,22 +37,24 @@ class MusicPlayerViewModel(
         private set
     var isReady by savedStateHandle.saveable { mutableStateOf(false) }
         private set
-
+    var currentMediaItem: MediaItem? by mutableStateOf(null)
+        private set
     init {
         viewModelScope.launch {
             musicPlayerHandler.mediaState.collect { mediaState ->
                 when (mediaState) {
                     is MediaState.Buffering -> calculateProgressValues(mediaState.progress)
-                    MediaState.Initial -> isReady = false
+                    is MediaState.Initial -> isReady = false
                     is MediaState.Playing -> isPlaying = true
                     is MediaState.Progress -> calculateProgressValues(mediaState.progress)
                     is MediaState.Ready -> {
                         duration = mediaState.duration
                         durationString = formatDuration(mediaState.duration)
+                        currentMediaItem = mediaState.currentMediaItem
                         isReady = true
                     }
 
-                    MediaState.Pausing -> isPlaying = false
+                    is MediaState.Pausing -> isPlaying = false
                 }
             }
         }
@@ -63,21 +66,20 @@ class MusicPlayerViewModel(
         }
     }
 
-    fun onMediaEvent(uiEvent: MediaEvent) = viewModelScope.launch {
-        when (uiEvent) {
-            MediaEvent.Backward -> musicPlayerHandler.onMediaEvent(MediaEvent.Backward)
-            MediaEvent.Forward -> musicPlayerHandler.onMediaEvent(MediaEvent.Forward)
-            MediaEvent.PlayPause -> musicPlayerHandler.onMediaEvent(MediaEvent.PlayPause)
-            is MediaEvent.UpdateProgress -> {
-                progress = uiEvent.newProgress
-                musicPlayerHandler.onMediaEvent(
-                    MediaEvent.UpdateProgress(
-                        uiEvent.newProgress
+    fun onMediaEvent(mediaEvent: MediaEvent) {
+        viewModelScope.launch {
+            when (mediaEvent) {
+                is MediaEvent.UpdateProgress -> {
+                    progress = mediaEvent.newProgress
+                    musicPlayerHandler.onMediaEvent(
+                        MediaEvent.UpdateProgress(
+                            mediaEvent.newProgress
+                        )
                     )
-                )
-            }
+                }
 
-            MediaEvent.Stop -> musicPlayerHandler.onMediaEvent(MediaEvent.Stop)
+                else -> musicPlayerHandler.onMediaEvent(mediaEvent)
+            }
         }
     }
 

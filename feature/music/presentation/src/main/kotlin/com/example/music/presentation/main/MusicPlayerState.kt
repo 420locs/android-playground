@@ -3,6 +3,7 @@ package com.example.music.presentation.main
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import com.example.media.state.MediaEvent
 import com.example.music.presentation.main.section.MusicPlayerSectionState
 import com.example.music.presentation.main.section.rememberMusicPlayerInitialSectionState
 import com.example.music.presentation.main.section.rememberMusicPlayerLoadedSectionState
@@ -20,6 +21,7 @@ internal fun rememberMusicPlayerState(
     val progressString = viewModel.progressString
     val isPlaying = viewModel.isPlaying
     val isReady = viewModel.isReady
+    val currentMediaItem = viewModel.currentMediaItem
 
     LaunchedEffect(key1 = isReady) {
         if (isReady) {
@@ -27,10 +29,29 @@ internal fun rememberMusicPlayerState(
         }
     }
 
-    val onPlay = remember(viewModel.mediaPlayer) {
-        {
-            viewModel.mediaPlayer.prepare()
-            viewModel.mediaPlayer.play()
+    val onPlay = rememberMediaAction(
+        key1 = viewModel,
+        onMediaEvent = viewModel::onMediaEvent,
+        action = MediaEvent.Play
+    )
+    val onPause = rememberMediaAction(
+        key1 = viewModel,
+        onMediaEvent = viewModel::onMediaEvent,
+        action = MediaEvent.Pause
+    )
+    val onPrevious = rememberMediaAction(
+        key1 = viewModel,
+        onMediaEvent = viewModel::onMediaEvent,
+        action = MediaEvent.Previous
+    )
+    val onNext = rememberMediaAction(
+        key1 = viewModel,
+        onMediaEvent = viewModel::onMediaEvent,
+        action = MediaEvent.Next
+    )
+    val onStopMediaPlayer = remember(viewModel) {
+        { newValue: Float ->
+            viewModel.onMediaEvent(MediaEvent.UpdateProgress(newProgress = newValue))
         }
     }
 
@@ -40,18 +61,30 @@ internal fun rememberMusicPlayerState(
             durationString = durationString,
             progress = progress,
             progressString = progressString,
-            onMediaEvent = viewModel::onMediaEvent,
+            currentMediaItem = currentMediaItem,
+            onStopMediaPlayer = onStopMediaPlayer,
             onPlay = onPlay,
-            onPause = viewModel.mediaPlayer::pause,
-            onPrevious = viewModel.mediaPlayer::seekToPreviousMediaItem,
-            onNext = viewModel.mediaPlayer::seekToNextMediaItem,
+            onPause = onPause,
+            onPrevious = onPrevious,
+            onNext = onNext,
         )
     } else {
         rememberMusicPlayerInitialSectionState(isError = false, message = "Something went wrong?")
     }
-    return remember(section, viewModel.mediaPlayer) {
+    return remember(viewModel, section) {
         MusicPlayerState(
             section = section,
         )
+    }
+}
+
+@Composable
+private fun rememberMediaAction(
+    key1: Any?,
+    onMediaEvent: (MediaEvent) -> Unit,
+    action: MediaEvent
+) = remember(key1) {
+    {
+        onMediaEvent(action)
     }
 }

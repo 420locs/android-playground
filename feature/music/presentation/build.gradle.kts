@@ -24,22 +24,23 @@ android {
 }
 
 dependencies {
+    // coil
+    implementation(thirdPartyLibs.coil.compose)
+
     // media3
     implementation(androidLibs.androidx.media3.session)
     implementation(androidLibs.androidx.media3.exoplayer)
     implementation(androidLibs.androidx.media3.ui)
     implementation(androidLibs.androidx.media3.common)
 
-//    implementation(project(":feature:sample:domain"))
-    implementation(project(":core:design-system"))
     implementation(project(":core:media"))
-    implementation(project(":core:push-notification"))
     implementation(project(":feature:home:domain"))
 
     implementation(thirdPartyLibs.koin.android.compose)
 
     implementation(kotlinLibs.kotlinx.serialization.json)
 
+    // Compose UI
     implementation(androidLibs.androidx.core.ktx)
     implementation(androidLibs.androidx.lifecycle.runtime.ktx)
     implementation(androidLibs.androidx.lifecycle.viewmodel)
@@ -54,4 +55,5 @@ dependencies {
     implementation(androidLibs.androidx.compose.navigation)
     debugImplementation(androidLibs.androidx.ui.tooling)
     debugImplementation(androidLibs.androidx.ui.test.manifest)
+    implementation(project(":core:design-system"))
 }

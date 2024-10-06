@@ -2,6 +2,7 @@ package com.example.music.presentation.main.section
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.media3.common.MediaItem
 import com.example.media.state.MediaEvent
 
 internal data class MusicPlayerLoadedSectionState(
@@ -9,7 +10,8 @@ internal data class MusicPlayerLoadedSectionState(
     val durationString: String,
     val progress: Float,
     val progressString: String,
-    val onMediaEvent: (MediaEvent) -> Unit,
+    val currentMediaItem: MediaItem?,
+    val onStopMediaPlayer: (Float) -> Unit,
     val onPlay: () -> Unit,
     val onPause: () -> Unit,
     val onPrevious: () -> Unit,
@@ -22,7 +24,8 @@ internal fun rememberMusicPlayerLoadedSectionState(
     durationString: String,
     progress: Float,
     progressString: String,
-    onMediaEvent: (MediaEvent) -> Unit,
+    currentMediaItem: MediaItem?,
+    onStopMediaPlayer: (Float) -> Unit,
     onPlay: () -> Unit,
     onPause: () -> Unit,
     onPrevious: () -> Unit,
@@ -33,7 +36,8 @@ internal fun rememberMusicPlayerLoadedSectionState(
         durationString,
         progress,
         progressString,
-        onMediaEvent,
+        currentMediaItem,
+        onStopMediaPlayer,
         onPlay,
         onPause,
         onPrevious,
@@ -44,7 +48,8 @@ internal fun rememberMusicPlayerLoadedSectionState(
             durationString = durationString,
             progress = progress,
             progressString = progressString,
-            onMediaEvent = onMediaEvent,
+            currentMediaItem = currentMediaItem,
+            onStopMediaPlayer = onStopMediaPlayer,
             onPlay = onPlay,
             onPause = onPause,
             onPrevious = onPrevious,

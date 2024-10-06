@@ -29,7 +29,7 @@ internal fun MusicPlayerLoadedSection(
             progress = state.progress,
             durationString = state.durationString,
             progressString = state.progressString,
-            onMediaEvent = state.onMediaEvent
+            onStopMediaPlayer = state.onStopMediaPlayer
         )
         Row(
             modifier = Modifier
@@ -58,7 +58,8 @@ internal fun MusicPlayerPreview() {
         durationString = "02:20",
         progress = 0.5f,
         progressString = "01:10",
-        onMediaEvent = {},
+        currentMediaItem = null,
+        onStopMediaPlayer = {},
         onPlay = {},
         onPause = {},
         onPrevious = {},

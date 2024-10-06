@@ -20,7 +20,7 @@ internal fun MediaProgressBar(
     progress: Float,
     durationString: String,
     progressString: String,
-    onMediaEvent: (MediaEvent) -> Unit
+    onStopMediaPlayer: (Float) -> Unit
 ) {
     val newProgressValue = remember { mutableFloatStateOf(0f) }
     val useNewProgressValue = remember { mutableStateOf(false) }
@@ -33,7 +33,7 @@ internal fun MediaProgressBar(
             onValueChange = { newValue ->
                 useNewProgressValue.value = true
                 newProgressValue.floatValue = newValue
-                onMediaEvent(MediaEvent.UpdateProgress(newProgress = newValue))
+                onStopMediaPlayer(newValue)
             },
             onValueChangeFinished = {
                 useNewProgressValue.value = false
