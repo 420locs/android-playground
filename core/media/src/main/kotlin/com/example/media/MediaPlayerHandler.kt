@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class MediaPlayerHandler (
+class MediaPlayerHandler(
     private val player: Player
 ) : Player.Listener {
 
@@ -25,18 +25,26 @@ class MediaPlayerHandler (
 
     suspend fun onMediaEvent(mediaEvent: MediaEvent) {
         when (mediaEvent) {
-            MediaEvent.Backward -> player.seekBack()
-            MediaEvent.Forward -> player.seekForward()
-            MediaEvent.PlayPause -> {
-                if (player.isPlaying) {
-                    player.pause()
-                    stopProgressUpdate()
-                } else {
+            MediaEvent.SeekBackward -> player.seekBack()
+            MediaEvent.SeekForward -> player.seekForward()
+            MediaEvent.Play -> {
+                if (!player.isPlaying) {
                     player.play()
                     _mediaState.value = MediaState.Playing
                     startProgressUpdate()
                 }
             }
+
+            MediaEvent.Pause -> {
+                if (player.isPlaying) {
+                    player.pause()
+                    stopProgressUpdate()
+                }
+            }
+
+            MediaEvent.Next -> player.seekToNextMediaItem()
+            MediaEvent.Previous -> player.seekToPreviousMediaItem()
+
             MediaEvent.Stop -> stopProgressUpdate()
             is MediaEvent.UpdateProgress -> player.seekTo((player.duration * mediaEvent.newProgress).toLong())
         }
@@ -46,8 +54,10 @@ class MediaPlayerHandler (
         when (playbackState) {
             ExoPlayer.STATE_BUFFERING -> _mediaState.value =
                 MediaState.Buffering(player.currentPosition)
+
             ExoPlayer.STATE_READY -> _mediaState.value =
-                MediaState.Ready(player.duration)
+                MediaState.Ready(player.duration, player.currentMediaItem)
+
             else -> Unit
         }
     }
