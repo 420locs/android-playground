@@ -22,7 +22,18 @@ android {
 }
 
 dependencies {
-//    implementation(project(":feature:home:domain"))
+    // coil
+    implementation(thirdPartyLibs.coil.compose)
+
+    // media3
+    implementation(androidLibs.androidx.media3.session)
+    implementation(androidLibs.androidx.media3.exoplayer)
+    implementation(androidLibs.androidx.media3.ui)
+    implementation(androidLibs.androidx.media3.common)
+
+    implementation(project(":core:media"))
+    implementation(project(":feature:music:presentation"))
+    implementation(project(":feature:home:domain"))
 
     implementation(thirdPartyLibs.koin.android.compose)
 

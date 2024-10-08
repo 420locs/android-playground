@@ -14,6 +14,6 @@ fun NavGraphBuilder.home(
     navigateToSample: () -> Unit
 ) {
     composable<HomeNavigation> {
-        HomeScreen(navigateToSample)
+        HomeScreen(navController = navController, navigateToHome = navigateToSample)
     }
 }

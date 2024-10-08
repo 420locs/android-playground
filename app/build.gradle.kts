@@ -49,6 +49,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:media"))
+
     implementation(androidLibs.accompanist.permissions)
 
     implementation(thirdPartyLibs.koin.android.compose)
@@ -59,7 +61,7 @@ dependencies {
     implementation(androidLibs.androidx.lifecycle.viewmodel)
     implementation(androidLibs.androidx.lifecycle.viewmodel.savable)
 
-    // UI
+    // Compose UI
     implementation(androidLibs.androidx.activity.compose)
     implementation(platform(androidLibs.androidx.compose.bom))
     implementation(androidLibs.androidx.ui)
