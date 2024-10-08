@@ -12,6 +12,7 @@ fun songToMediaItem(song: Song): MediaItem {
             MediaMetadata.Builder()
                 .setIsBrowsable(false)
                 .setMediaType(MediaMetadata.MEDIA_TYPE_MUSIC)
+                .setArtist(song.artist)
                 .setArtworkUri(Uri.parse(song.image))
                 .setAlbumTitle(song.album)
                 .setDisplayTitle(song.title)

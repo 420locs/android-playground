@@ -1,16 +1,13 @@
 package com.example.music.presentation.main
 
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
 import androidx.lifecycle.viewmodel.compose.saveable
-import androidx.media3.common.MediaItem
 import com.example.media.MediaPlayerHandler
 import com.example.media.MediaServiceConnection
 import com.example.media.state.MediaEvent
@@ -37,8 +34,8 @@ class MusicPlayerViewModel(
         private set
     var isReady by savedStateHandle.saveable { mutableStateOf(false) }
         private set
-    var currentMediaItem: MediaItem? by mutableStateOf(null)
-        private set
+    val currentMediaItem = musicPlayerHandler.currentMediaItem
+
     init {
         viewModelScope.launch {
             musicPlayerHandler.mediaState.collect { mediaState ->
@@ -50,7 +47,6 @@ class MusicPlayerViewModel(
                     is MediaState.Ready -> {
                         duration = mediaState.duration
                         durationString = formatDuration(mediaState.duration)
-                        currentMediaItem = mediaState.currentMediaItem
                         isReady = true
                     }
 

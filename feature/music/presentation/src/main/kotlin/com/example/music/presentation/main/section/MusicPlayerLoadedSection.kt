@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.music.presentation.mediaProgressBar.MediaProgressBar
+import kotlinx.coroutines.flow.flow
 
 @Composable
 internal fun MusicPlayerLoadedSection(
@@ -58,7 +59,7 @@ internal fun MusicPlayerPreview() {
         durationString = "02:20",
         progress = 0.5f,
         progressString = "01:10",
-        currentMediaItem = null,
+        currentMediaItem = flow { },
         onStopMediaPlayer = {},
         onPlay = {},
         onPause = {},

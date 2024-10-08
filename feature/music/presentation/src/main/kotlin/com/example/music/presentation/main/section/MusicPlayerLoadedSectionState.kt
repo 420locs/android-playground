@@ -3,14 +3,14 @@ package com.example.music.presentation.main.section
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.media3.common.MediaItem
-import com.example.media.state.MediaEvent
+import kotlinx.coroutines.flow.Flow
 
 internal data class MusicPlayerLoadedSectionState(
     val isPlaying: Boolean,
     val durationString: String,
     val progress: Float,
     val progressString: String,
-    val currentMediaItem: MediaItem?,
+    val currentMediaItem: Flow<MediaItem?>,
     val onStopMediaPlayer: (Float) -> Unit,
     val onPlay: () -> Unit,
     val onPause: () -> Unit,
@@ -24,7 +24,7 @@ internal fun rememberMusicPlayerLoadedSectionState(
     durationString: String,
     progress: Float,
     progressString: String,
-    currentMediaItem: MediaItem?,
+    currentMediaItem: Flow<MediaItem?>,
     onStopMediaPlayer: (Float) -> Unit,
     onPlay: () -> Unit,
     onPause: () -> Unit,
