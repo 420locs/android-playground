@@ -20,13 +20,14 @@ android {
 
 dependencies {
     implementation(thirdPartyLibs.ktor.core)
-    implementation(thirdPartyLibs.koin.core)
+    implementation(thirdPartyLibs.koin.android)
     implementation(project(":core:data:network"))
     implementation(project(":core:media"))
-    implementation(project(":feature:sample:data"))
-    implementation(project(":feature:sample:domain"))
     implementation(project(":feature:music:presentation"))
-    implementation(project(":feature:home:presentation"))
-    implementation(project(":feature:home:data"))
+    implementation(project(":feature:sample:domain"))
+    implementation(project(":feature:sample:data"))
+    implementation(project(":feature:sample:presentation"))
     implementation(project(":feature:home:domain"))
+    implementation(project(":feature:home:data"))
+    implementation(project(":feature:home:presentation"))
 }
