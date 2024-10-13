@@ -19,8 +19,11 @@ android {
 }
 
 dependencies {
+    // Provide interface of Player
+    implementation(androidLibs.androidx.media3.exoplayer)
+    // Provide interface of HttpClient
     implementation(thirdPartyLibs.ktor.core)
-    implementation(thirdPartyLibs.koin.android)
+    implementation(thirdPartyLibs.koin.android.compose)
     implementation(project(":core:data:network"))
     implementation(project(":core:media"))
     implementation(project(":feature:music:presentation"))

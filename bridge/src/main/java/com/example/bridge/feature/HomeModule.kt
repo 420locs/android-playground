@@ -5,6 +5,7 @@ import com.example.home.data.HomeInternalRepository
 import com.example.home.domain.HomeRepository
 import com.example.home.domain.useCase.GetAllRemoteSongs
 import com.example.home.presentation.main.HomeViewModel
+import com.example.home.presentation.playingSong.PlayingSongViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -21,5 +22,6 @@ internal object HomeModule {
 
         // ViewModels
         viewModelOf(::HomeViewModel)
+        viewModelOf(::PlayingSongViewModel)
     }
 }

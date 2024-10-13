@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.home.domain.model.Song
 import com.example.home.presentation.songToMediaItem
-import com.example.music.presentation.main.MusicPlayer
+import com.example.music.presentation.main.MusicPlayerCompact
 
 @Composable
 internal fun HomeScreenLoadedSection(
@@ -79,7 +79,8 @@ internal fun HomeScreenLoadedSection(
             }
         }
         if (state.isMediaPlayerReady) {
-            MusicPlayer(isCompactMode = true, modifier = Modifier.align(Alignment.BottomCenter))
+            MusicPlayerCompact(modifier = Modifier.align(Alignment.BottomCenter),
+                actionOpenPlayingSong = state.navigateToPlayingSong)
         }
     }
 
@@ -193,6 +194,7 @@ internal fun HomeScreenLoadedSectionPreview() {
         todayHits = sampleSongs,
         weeklyDiscovery = sampleSongs,
         onPlayMediaAtNewList = { _, _ -> },
+        navigateToPlayingSong = {},
         isMediaPlayerReady = false,
     )
     HomeScreenLoadedSection(state, PaddingValues())

@@ -1,0 +1,3 @@
+package com.example.home.presentation.playingSong.section
+
+internal sealed interface PlayingSongScreenSection

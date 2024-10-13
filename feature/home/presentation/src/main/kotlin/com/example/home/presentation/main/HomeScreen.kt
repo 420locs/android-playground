@@ -73,6 +73,7 @@ internal fun HomeScreenContentPreview() {
             todayHits = emptyList(),
             weeklyDiscovery = emptyList(),
             onPlayMediaAtNewList = { _, _ -> },
+            navigateToPlayingSong = {},
             isMediaPlayerReady = false,
         ),
         navigateToSample = {}

@@ -11,6 +11,7 @@ internal data class HomeScreenLoadedSectionState(
     val weeklyDiscovery: List<Song>,
     val isMediaPlayerReady: Boolean,
     val onPlayMediaAtNewList: (Int, List<MediaItem>) -> Unit,
+    val navigateToPlayingSong: () -> Unit
 ) : HomeScreenSection
 
 @Composable
@@ -18,6 +19,7 @@ internal fun rememberHomeScreenLoadedSectionState(
     listMusic: List<Song>,
     isMediaPlayerReady: Boolean,
     onPlayMediaAtNewList: (Int, List<MediaItem>) -> Unit,
+    navigateToPlayingSong: () -> Unit,
 ): HomeScreenLoadedSectionState {
     // fixme: Fake data
     val recentlyPlayed = remember { listMusic.shuffled().take(6) }
@@ -27,13 +29,14 @@ internal fun rememberHomeScreenLoadedSectionState(
             recentlyPlayed.contains(it)
         }
     }
-    return remember(listMusic, isMediaPlayerReady) {
+    return remember(listMusic, isMediaPlayerReady, navigateToPlayingSong) {
         HomeScreenLoadedSectionState(
             recentlyPlayed = recentlyPlayed,
             todayHits = todayHits,
             weeklyDiscovery = weeklyDiscovery,
             onPlayMediaAtNewList = onPlayMediaAtNewList,
             isMediaPlayerReady = isMediaPlayerReady,
+            navigateToPlayingSong = navigateToPlayingSong
         )
     }
 }
