@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
+    implementation(thirdPartyLibs.ktor.core)
     implementation(thirdPartyLibs.koin.core)
     implementation(kotlinLibs.kotlinx.serialization.json)
-    implementation(thirdPartyLibs.retrofit.core)
     implementation(project(":core:data:network"))
     implementation(project(":feature:sample:domain"))
 }

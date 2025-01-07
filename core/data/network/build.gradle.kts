@@ -4,9 +4,7 @@ plugins {
 
 dependencies {
     implementation(kotlinLibs.kotlinx.serialization.json)
-    implementation(thirdPartyLibs.retrofit.core)
     implementation(thirdPartyLibs.okhttp.logging)
-    implementation(thirdPartyLibs.retrofit.kotlin.serialization)
 
     // Ktor Client
     implementation(thirdPartyLibs.ktor.core)

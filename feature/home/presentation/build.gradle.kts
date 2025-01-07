@@ -32,6 +32,7 @@ dependencies {
     implementation(androidLibs.androidx.media3.common)
 
     implementation(project(":core:media"))
+    implementation(project(":core:design-system"))
     implementation(project(":feature:music:presentation"))
     implementation(project(":feature:home:domain"))
 

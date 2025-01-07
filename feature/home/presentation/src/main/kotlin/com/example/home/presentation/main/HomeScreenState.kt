@@ -10,6 +10,7 @@ import com.example.home.presentation.main.section.HomeScreenSection
 import com.example.home.presentation.main.section.rememberHomeScreenInitialSectionState
 import com.example.home.presentation.main.section.rememberHomeScreenLoadedSectionState
 import com.example.home.presentation.main.section.rememberHomeScreenLoadingSectionState
+import com.example.home.presentation.navigation.PlayingSongNavigation
 import com.example.media.playMediaAtPlaylist
 
 internal data class HomeScreenState(
@@ -26,7 +27,14 @@ internal fun rememberHomeScreenState(
     val isInitiateLoading = viewModel.isFirstLoadLoading
     val isRefreshLoading = viewModel.isRefreshLoading
     val todayMusics = viewModel.todayMusics
-    var isMediaPlayerReady by remember { mutableStateOf(false) }
+    var isMediaPlayerReady by remember(viewModel.mediaPlayer) {
+        mutableStateOf(
+            List(
+                viewModel.mediaPlayer.mediaItemCount,
+                viewModel.mediaPlayer::getMediaItemAt
+            ).isNotEmpty()
+        )
+    }
 
     val section = when {
         isInitiateLoading -> rememberHomeScreenLoadingSectionState()
@@ -37,6 +45,9 @@ internal fun rememberHomeScreenState(
                 viewModel.mediaPlayer.playMediaAtPlaylist(index, playlist)
             },
             isMediaPlayerReady = isMediaPlayerReady,
+            navigateToPlayingSong = {
+                navController.navigate(PlayingSongNavigation)
+            }
         )
 
         else -> rememberHomeScreenInitialSectionState(

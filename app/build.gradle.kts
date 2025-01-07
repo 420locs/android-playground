@@ -75,7 +75,6 @@ dependencies {
 
 
     implementation(kotlinLibs.kotlinx.serialization.json)
-    implementation(thirdPartyLibs.retrofit.core)
     implementation(project(":feature:home:presentation"))
     implementation(project(":feature:sample:presentation"))
 
