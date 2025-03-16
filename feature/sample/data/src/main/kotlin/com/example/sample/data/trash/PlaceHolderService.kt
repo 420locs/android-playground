@@ -1,11 +1,11 @@
 package com.example.sample.data.trash
 
-import com.example.sample.domain.model.Post
-import retrofit2.http.GET
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
 
-interface PlaceHolderService {
+class PlaceHolderService(private val httpClient: HttpClient) {
+    private val baseUrl = "https://jsonplaceholder.typicode.com/"
 
-    @GET("posts")
-    suspend fun getPosts(): List<Post>
+    suspend fun getPosts() = httpClient.get("${baseUrl}posts")
 
 }

@@ -23,7 +23,6 @@ android {
 
 dependencies {
     implementation(project(":feature:sample:domain"))
-    implementation(project(":core:design-system"))
     implementation(project(":core:push-notification"))
 
     implementation(thirdPartyLibs.koin.android.compose)
@@ -35,6 +34,7 @@ dependencies {
     implementation(androidLibs.androidx.lifecycle.viewmodel)
     implementation(androidLibs.androidx.lifecycle.viewmodel.savable)
 
+    // Compose UI
     implementation(androidLibs.androidx.activity.compose)
     implementation(platform(androidLibs.androidx.compose.bom))
     implementation(androidLibs.androidx.ui)
@@ -44,4 +44,5 @@ dependencies {
     implementation(androidLibs.androidx.compose.navigation)
     debugImplementation(androidLibs.androidx.ui.tooling)
     debugImplementation(androidLibs.androidx.ui.test.manifest)
+    implementation(project(":core:design-system"))
 }
